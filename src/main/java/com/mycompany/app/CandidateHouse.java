@@ -1,30 +1,21 @@
 package com.mycompany.app;
-public class HouseOption {
-    private Address address;
+public class CandidateHouse extends Place {
     private HouseType houseType;
     private double ppw;
-    private String description;
 
-    public HouseOption(Address address, HouseType houseType, double ppw, String description) {
-        this.address = address;
+    // potential for number of bed and bathroom
+
+    public CandidateHouse(Address address, HouseType houseType, double ppw, String description) {
+        super(address, description);
         this.houseType = houseType;
         if(ppw > 0) {
             this.ppw = ppw;
         }
-        this.description = description;
     }
 
     // If no description added initially
-    public HouseOption(Address address, HouseType houseType, double ppw){
+    public CandidateHouse(Address address, HouseType houseType, double ppw){
         this(address, houseType, ppw, "");
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
     }
 
     public HouseType getHouseType() {
@@ -45,25 +36,15 @@ public class HouseOption {
         }
     }
 
-    public String getDescription() {
-        return description;
-    }
-
     // add to notes ongoing notes about a place
     public void addToDescription(String additionalNotes){
-
-        // determine if separator needed
-        if(!this.description.isEmpty()){
-            this.description += "; ";
-        }
-        this.description += additionalNotes;
-        }
+        // add description to list
+        this.descriptions.add(additionalNotes);
+    }
 
     enum HouseType
     {
         HOUSE, APARTMENT, UNIT, TOWNHOUSE
     }
-
-
 
 }

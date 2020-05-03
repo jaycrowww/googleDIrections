@@ -3,10 +3,11 @@ package com.mycompany.app;
 // NOTE: Alex recommends not allowing modification of Addresses. Rather delete and replace.
 // possibly make them 'final'
 public class AddressBuilder {
+    private static final String EMPTY_STRING = "";
     private static final String DEFAULT_COUNTRY = "AUSTRALIA";
 
     private String addressL1;
-    private String addressL2;
+    private String addressL2 = EMPTY_STRING;
     private String suburb;
     private String state;
     private String postCode;
