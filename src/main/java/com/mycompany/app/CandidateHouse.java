@@ -36,12 +36,6 @@ public class CandidateHouse extends Place {
         }
     }
 
-    // add to notes ongoing notes about a place
-    public void addToDescription(String additionalNotes){
-        // add description to list
-        this.descriptions.add(additionalNotes);
-    }
-
     enum HouseType
     {
         HOUSE, APARTMENT, UNIT, TOWNHOUSE
