@@ -26,7 +26,7 @@ public class PlaceOfImportance extends Place {
 
     @Override
     public String toString(){
-        return address.toString() + "also known as --" + alias +  "-- " + this.getDescriptions();
+        return address.toString() + "also known as --" + alias +  "-- " + this.appendAllDescriptions();
     }
 
 }
