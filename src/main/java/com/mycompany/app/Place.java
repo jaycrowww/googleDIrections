@@ -1,6 +1,7 @@
 package com.mycompany.app;
 
 import java.util.ArrayList;
+import java.util.List;
 
 abstract class Place {
     // these should be protected - any class in a package can access these - typically for subclasses.
@@ -25,16 +26,32 @@ abstract class Place {
     }
 
     // Return all List descriptions as String
-    public String getDescriptions() {
-        String outputDescriptions = "";
+    public String appendAllDescriptions() {
+        StringBuilder outputDescriptions = new StringBuilder();
         for(String d: descriptions){
-            outputDescriptions += " | " +  d;
+            if(outputDescriptions.length() > 0){
+                outputDescriptions.append(" | ");
+            }
+            outputDescriptions.append(d);
         }
-        return outputDescriptions;
+        return outputDescriptions.toString();
     }
 
     @Override
     public String toString() {
-        return address.toString() + " " + this.getDescriptions();
+        return address.toString() + " " + this.appendAllDescriptions();
+    }
+
+    public List<String> getDescriptions() {
+        return descriptions;
+    }
+    // add to notes ongoing notes about a place
+    public void addToDescription(String additionalNotes){
+        // add description to list
+        this.descriptions.add(additionalNotes);
+    }
+
+    public String returnDescriptionNo(int i){
+        return this.descriptions.get(i-1);
     }
 }
