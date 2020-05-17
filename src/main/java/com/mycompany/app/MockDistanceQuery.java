@@ -9,9 +9,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class MockDistanceQuery implements DistanceQuery {
 
@@ -52,34 +50,56 @@ public class MockDistanceQuery implements DistanceQuery {
     }
 
     private List<Result> parseRawJSONIntoFormattedResults(JSONObject rawData) {
+        JSONArray rows = (JSONArray) rawData.get("rows");
+
+        // Number of origin_addresses returned from Google
+        JSONArray origins = (JSONArray) rawData.get("origin_addresses");
+        int numOrigins = origins.size();
+
+        // Number of destinations
         JSONArray destinations = (JSONArray)rawData.get("destination_addresses");
-
-        for (Object d: destinations) {
-        }
-
+        int numDestinations = destinations.size();
 
         // JSON PARSING
-        System.out.println(rawData.size());
-        // testing accessing nested data
-        JSONArray rows = (JSONArray) rawData.get("rows");
-        JSONObject row = (JSONObject)rows.get(0);
-        JSONArray elements = (JSONArray)row.get("elements");
-        JSONObject element = (JSONObject)elements.get(0);
-        JSONObject duration = (JSONObject) element.get("duration");
-        long seconds = (long) duration.get("value");
+        // Initialise Result Lists
+        List<Result> results = new ArrayList<Result>();
 
-        System.out.println("seconds: " + seconds);
+        // CH loop
+        for(int i = 0; i < numOrigins; i++){
+            JSONObject row = (JSONObject)rows.get(i);
+            String address = (String)origins.get(i);
 
-//        // NOTE: this brings nothing back at the top layer.
-//        JSONArray elements = (JSONArray) rawData.get("elements");
-//        System.out.println(elements);
-//        System.out.println("size of elements: " + rows.size());
+            Map<String, Number> mapDistance = new HashMap<>();
+            Map<String, Number> mapDuration = new HashMap<>();
+
+            for(int j=0; j<numDestinations; j++){
+                //Destination address
+                String poiName = (String) destinations.get(j);
+
+                // Traversing nested data
+                JSONArray elements = (JSONArray)row.get("elements");
+                JSONObject element = (JSONObject)elements.get(j);
+
+                // distance
+                JSONObject distance = (JSONObject) element.get("distance");
+                long metres = (long) distance.get("value");
+
+                // duration
+                JSONObject duration = (JSONObject) element.get("duration");
+                long seconds = (long) duration.get("value");
 
 
+                // Map values
+                mapDistance.put(poiName, metres);
+                mapDuration.put(poiName, seconds);
+            }
 
-        List<Result> temp = new ArrayList<Result>();
+            // Create result in one line
+            Result result = new Result(address, mapDistance, mapDuration);
 
-        return temp;
+            results.add(result);
+        }
+        return results;
     }
 }
 

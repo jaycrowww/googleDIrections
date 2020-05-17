@@ -59,7 +59,8 @@ public class MockDistanceQueryTest {
         DistanceQuery dq = new MockDistanceQuery();
 
         // return test data
-        assertEquals(null, dq.getResults(candidateHouses, pois));
+        assertEquals("46 Ada Pl, Ultimo NSW 2007, Australia", dq.getResults(candidateHouses, pois).get(0).getpAddress());
+        assertEquals((long)2156, dq.getResults(candidateHouses,pois).get(0).getDistances().get("66 Clarence St, Sydney NSW 2000, Australia"));
 
 
     }
