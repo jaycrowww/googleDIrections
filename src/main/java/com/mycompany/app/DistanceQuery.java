@@ -9,8 +9,8 @@ public interface DistanceQuery {
 
     // Used for standard Google Look Ups
     // Parsing as Places because only Addresses are important in this case - which a attribute of parent class Place
-    String getResults(List<CandidateHouse> candidateHouses, List<PlaceOfImportance> pois, Mode mode) throws IOException;
-    String getResults(List<CandidateHouse> candidateHouses, List<PlaceOfImportance> pois) throws IOException;
+    List<Result> getResults(List<CandidateHouse> candidateHouses, List<PlaceOfImportance> pois, Mode mode) throws IOException;
+    List<Result> getResults(List<CandidateHouse> candidateHouses, List<PlaceOfImportance> pois) throws IOException;
 
     // Not needed because API call returns distance and duration together - singular call.
 //    double getDistance(Address address1, Address address2, Mode mode);

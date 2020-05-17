@@ -59,7 +59,7 @@ public class MockDistanceQueryTest {
         DistanceQuery dq = new MockDistanceQuery();
 
         // return test data
-        assertEquals("", dq.getResults(candidateHouses, pois));
+        assertEquals(null, dq.getResults(candidateHouses, pois));
 
 
     }
