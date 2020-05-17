@@ -1,8 +1,13 @@
 package com.mycompany.app;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
+import java.io.Reader;
 import java.util.List;
 import java.util.Objects;
 
@@ -12,7 +17,9 @@ public class MockDistanceQuery implements DistanceQuery {
 
     @Override
     public String getResults(List<CandidateHouse> candidateHouses, List<PlaceOfImportance> pois, Mode mode) throws IOException {
-        return retrieveRawData(candidateHouses, pois, mode);
+        JSONObject jo = retrieveRawData(candidateHouses, pois, mode);
+        System.out.println(jo);
+        return null;
 
     }
 
@@ -23,19 +30,32 @@ public class MockDistanceQuery implements DistanceQuery {
         return getResults(candidateHouses, pois, Mode.DRIVING);
     }
 
-    private String retrieveRawData(List<Place> CandidateHouses, List<Place> pois, Mode mode) throws IOException {
+    private JSONObject retrieveRawData(List<CandidateHouse> CandidateHouses, List<PlaceOfImportance> pois, Mode mode) throws IOException {
         // Method used to access files from Resource Folder
-        // Source: https://howtodoinjava.com/java/io/read-file-from-resources-folder/
-        ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+        JSONParser parser = new JSONParser();
 
+        ClassLoader classLoader = ClassLoader.getSystemClassLoader();
         // recommended 'Objects.requireNonNull...' to avoid a Null Pointer Exception
         File file = new File(Objects.requireNonNull(classLoader.getResource(FILENAME)).getFile());
 
-        System.out.println("File Found : " + file.exists());
-        String content = new String(Files.readAllBytes(file.toPath()));
-        System.out.println(content);
-        return content;
+        try(Reader reader = new FileReader(file)) {
+            JSONObject jsonObject = (JSONObject) parser.parse(reader);
+            return jsonObject;
+        } catch (ParseException e) {
+            throw new IOException("Mock data parse failed, simulating IO exception", e);
+        }
     }
+
+//        ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+//
+//        // recommended 'Objects.requireNonNull...' to avoid a Null Pointer Exception
+//        File file = new File(Objects.requireNonNull(classLoader.getResource(FILENAME)).getFile());
+//
+//        System.out.println("File Found : " + file.exists());
+//        String content = new String(Files.readAllBytes(file.toPath()));
+//        System.out.println(content);
+//        return content;
+//    }
 }
 
 
