@@ -7,16 +7,14 @@ public class AddressBuilderTest {
 
     @Test
     public void testToString(){
-        Address address1 = new AddressBuilder()
-            .setAddressL1("82 Mary Ann Street")
-            .setAddressL2("Apartment 52")
-            .setCountry("Australia")
-            .setPostCode("2007")
-            .setState("NSW")
-            .setSuburb("Ultimo")
-            .createAddress();
+        Address address = new AddressBuilder()
+                .setAddressL1("46 Ada Place")
+                .setPostCode("2007")
+                .setState("NSW")
+                .setSuburb("Ultimo")
+                .createAddress();
 
-        Assert.assertEquals("82 Mary Ann Street Apartment 52 Ultimo NSW 2007 Australia", address1.toString());
+        Assert.assertEquals("46 Ada Place Ultimo NSW 2007 Australia", address.toString());
     }
 
 }

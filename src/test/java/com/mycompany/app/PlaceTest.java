@@ -18,9 +18,7 @@ public class PlaceTest {
         // Uses Address building pattern so that variables will always be structured
         // create component / dependency first and then pass to HouseOption
         address = new AddressBuilder()
-                .setAddressL1("82 Mary Ann Street")
-                .setAddressL2("Apartment 52")
-                .setCountry("Australia")
+                .setAddressL1("46 Ada Place")
                 .setPostCode("2007")
                 .setState("NSW")
                 .setSuburb("Ultimo")

@@ -3,18 +3,18 @@ package com.mycompany.app;
 // this class is for search terms like supermarkets that users will want to know what the closest one is
 public class Landmark {
 
-    private String nearbyLandmarkSearchTerm;
+    private String landmarkSearchTerm;
 
-    public Landmark(String nearbyLandmarkSearchTerm) {
-        this.nearbyLandmarkSearchTerm = nearbyLandmarkSearchTerm;
+    public Landmark(String landmarkSearchTerm) {
+        this.landmarkSearchTerm = landmarkSearchTerm;
     }
 
-    public String getNearbyLandmarkSearchTerm() {
-        return nearbyLandmarkSearchTerm;
+    public String getLandmarkSearchTerm() {
+        return landmarkSearchTerm;
     }
 
-    public void setNearbyLandmarkSearchTerm(String nearbyLandmarkSearchTerm) {
-        this.nearbyLandmarkSearchTerm = nearbyLandmarkSearchTerm;
+    public void setLandmarkSearchTerm(String landmarkSearchTerm) {
+        this.landmarkSearchTerm = landmarkSearchTerm;
     }
 
 }

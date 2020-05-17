@@ -1,4 +1,5 @@
 package com.mycompany.app;
+
 public class CandidateHouse extends Place {
     private HouseType houseType;
     private double ppw;
@@ -14,7 +15,7 @@ public class CandidateHouse extends Place {
     }
 
     // If no description added initially
-    public CandidateHouse(Address address, HouseType houseType, double ppw){
+    public CandidateHouse(Address address, HouseType houseType, double ppw) {
         this(address, houseType, ppw, "");
     }
 
@@ -36,8 +37,7 @@ public class CandidateHouse extends Place {
         }
     }
 
-    enum HouseType
-    {
+    enum HouseType {
         HOUSE, APARTMENT, UNIT, TOWNHOUSE
     }
 
