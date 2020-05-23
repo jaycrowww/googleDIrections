@@ -10,8 +10,7 @@ public class PlaceOfImportance extends Place {
 
     // No Description
     public PlaceOfImportance(Address address, String alias){
-        this(address);
-        this.alias = alias;
+        this(address, alias, "");
     }
 
     public PlaceOfImportance(Address address, String alias, String description){

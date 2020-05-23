@@ -38,7 +38,7 @@ public class CandidateHouse extends Place {
     }
 
     enum HouseType {
-        HOUSE, APARTMENT, UNIT, TOWNHOUSE
+        HOUSE, APARTMENT, UNIT, TOWNHOUSE, UNDEFINED
     }
 
 }

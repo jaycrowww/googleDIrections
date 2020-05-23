@@ -2,34 +2,79 @@ package com.mycompany.app;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
 public class TextFileReader implements FileReader {
-    private String fileName = "Addresses.txt";
+    private static final String DELIMITER = "|";
+    private  static final String IDENTIFIER_CANDIDATE_HOUSE = "CH";
+    private static final String IDENTIFIER_PLACE_OF_INTEREST = "POI";
 
+    private String fileName = "inputFile.txt";
 
-    public ReadFile readInFile() throws FileNotFoundException {
+    public ReadFile readInFile() throws IOException {
         return this.readInFile(fileName);
     }
 
     @Override
-    public ReadFile readInFile(String inputFileName) throws FileNotFoundException {
+    public ReadFile readInFile(String inputFileName) throws FileNotFoundException, IOException {
+
+        // Read in items into lists from file input
+        List<CandidateHouse> candidateHouses = new ArrayList<CandidateHouse>();
+        List<PlaceOfImportance> placeOfImportances = new ArrayList<PlaceOfImportance>();
+
+
         // ClassLoader is used to retrieve file from Resource folder
         ClassLoader classLoader = ClassLoader.getSystemClassLoader();
         // recommended 'Objects.requireNonNull...' to avoid a Null Pointer Exception
         File file = new File(Objects.requireNonNull(classLoader.getResource(inputFileName)).getFile());
+
+        // To store line items from File IO
+        String[] tokens;
+
         try (Scanner myReader = new Scanner(file)) {
             while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-                System.out.println(data);
+                // Read in line and separate out by field value
+                tokens = myReader.nextLine().split(DELIMITER);
+
+                // Do shared stuff for Places first
+                Address address = new Address(tokens[1]);
+                String description = tokens[2];
+
+                // check first value - which says whether it is a Candidate House (CH) or Place of Interest (POI)
+                if(tokens[0].equals(IDENTIFIER_CANDIDATE_HOUSE)){
+
+                    // Check if the houseType is one of the available enums, else assign undefined type
+                    CandidateHouse.HouseType houseType;
+                    try {
+                        houseType = CandidateHouse.HouseType.valueOf(tokens[3]);
+                    }catch(IllegalArgumentException e){
+                        houseType = CandidateHouse.HouseType.UNDEFINED;
+                    }
+                    Double ppw = Double.parseDouble(tokens[3]);
+
+                    CandidateHouse candidateHouse = new CandidateHouse(address, houseType, ppw, description);
+                    candidateHouses.add(candidateHouse);
+
+                } else if(tokens[0].equals(IDENTIFIER_PLACE_OF_INTEREST)){
+                    String alias = tokens[3];
+                    PlaceOfImportance placeOfImportance = new PlaceOfImportance(address, alias, description);
+                    placeOfImportances.add(placeOfImportance);
+
+                } else{
+                    // If invalid identifier - do nothing.
+                }
             }
-            myReader.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
+        } catch (IOException e) {
+            System.out.println("An IO error occurred.");
             e.printStackTrace();
         }
-        return null;
+
+        ReadFile readfile = new ReadFile(candidateHouses, placeOfImportances);
+        return readfile;
     }
 
     @Override
@@ -40,6 +85,5 @@ public class TextFileReader implements FileReader {
 
 
 
-    public TextFileReader() throws FileNotFoundException {
-    }
+    public TextFileReader() throws IOException {}
 }

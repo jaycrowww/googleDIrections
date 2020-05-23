@@ -1,7 +1,6 @@
-46 Ada Place Ultimo NSW 2007
-60-62 Foveaux St, Surry Hills NSW 2010
-
-367 George Street Sydney NSW 2000
-66 Clarence Street Sydney NSW 2000
-1 William Street Sydney NSW 2000
-3 Allen St, Waterloo NSW 2017
+CH|46 Ada Place Ultimo NSW 2007|On a main road with a steep hill|HOUSE|750.00|Located near Darling Square
+CH|60-62 Foveaux St Surry Hills NSW 2010|On a main road with a steep hill|APARTMENT|800.00
+POI|367 George Street Sydney NSW 2000||work
+POI|66 Clarence Street Sydney NSW 2000||jo's work
+POI|1 William Street Sydney NSW 2000||tim's work
+POI|3 Allen St, Waterloo NSW 2017||boxing gym
