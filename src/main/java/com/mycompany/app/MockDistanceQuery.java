@@ -57,7 +57,8 @@ public class MockDistanceQuery implements DistanceQuery {
         int numOrigins = origins.size();
 
         // Number of destinations
-        JSONArray destinations = (JSONArray)rawData.get("destination_addresses");
+        JSONArray destinations =
+                (JSONArray)rawData.get("destination_addresses");
         int numDestinations = destinations.size();
 
         // JSON PARSING
@@ -72,6 +73,7 @@ public class MockDistanceQuery implements DistanceQuery {
             Map<String, Number> mapDistance = new HashMap<>();
             Map<String, Number> mapDuration = new HashMap<>();
 
+            // POI Info Loop
             for(int j=0; j<numDestinations; j++){
                 //Destination address
                 String poiName = (String) destinations.get(j);

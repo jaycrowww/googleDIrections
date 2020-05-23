@@ -45,42 +45,22 @@ public class AppTest
 
         // Uses Address building pattern so that variables will always be structured
         // create component / dependency first and then pass to HouseOption
-        Address address1 = new AddressBuilder()
-                .setAddressL1("46 Ada Place")
-                .setPostCode("2007")
-                .setState("NSW")
-                .setSuburb("Ultimo")
-                .createAddress();
+        Address address1 = new Address("46 Ada Place Ultimo NSW 2007");
 
         option1 = new CandidateHouse(address1, CandidateHouse.HouseType.APARTMENT, ppw, description);
         // testing adding notes
         option1.addToDescription("stomping heard from the 5th floor 03/05/2020");
 
         // Control - same address, should return zero for distance
-        Address poiAddress1 = new AddressBuilder()
-                .setAddressL1("46 Ada Place")
-                .setPostCode("2007")
-                .setState("NSW")
-                .setSuburb("Ultimo")
-                .createAddress();
+        Address poiAddress1 = new Address("46 Ada Place Ultimo NSW 2007");
 
         // WORK, no AddressL2 assigned
-        Address poiAddress2 = new AddressBuilder()
-                .setAddressL1("367 George Street")
-                .setCountry("Australia")
-                .setPostCode("2000")
-                .setState("NSW")
-                .setSuburb("Sydney")
-                .createAddress();
+        Address poiAddress2 = new Address("367 George Street Sydney NSW 2000");
 
         // Boxing Gym
         // No country set
-        Address poiAddress3 = new AddressBuilder()
-                .setAddressL1("3 Allen Street")
-                .setPostCode("2017")
-                .setState("NSW")
-                .setSuburb("Waterloo")
-                .createAddress();
+        Address poiAddress3 = new Address("3 Allen St, Waterloo NSW 2017");
+
 
         // Create places of importance
         place1 = new PlaceOfImportance(poiAddress1, "Home");

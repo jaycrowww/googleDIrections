@@ -25,12 +25,7 @@ public class MockDistanceQueryTest {
     @Before
     public void setup(){
         // create CH
-        address1 = new AddressBuilder()
-                .setAddressL1("46 Ada Place")
-                .setPostCode("2007")
-                .setState("NSW")
-                .setSuburb("Ultimo")
-                .createAddress();
+        address1 = new Address("46 Ada Place Ultimo NSW 2007");
 
         house = new CandidateHouse(address1, CandidateHouse.HouseType.APARTMENT, ppw, description);
 
@@ -39,12 +34,7 @@ public class MockDistanceQueryTest {
         candidateHouses.add(house);
 
         // create POI
-        address2 = new AddressBuilder()
-                .setAddressL1("367 George Street")
-                .setPostCode("2000")
-                .setState("NSW")
-                .setSuburb("Sydney")
-                .createAddress();
+        address2 = new Address("367 George Street Sydney NSW 2000");
 
         poi = new PlaceOfImportance(address2, "work");
 

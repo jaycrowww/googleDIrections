@@ -17,12 +17,7 @@ public class CandidateHouseTest {
     public void setUp() {
         // Uses Address building pattern so that variables will always be structured
         // create component / dependency first and then pass to HouseOption
-        address = new AddressBuilder()
-                .setAddressL1("46 Ada Place")
-                .setPostCode("2007")
-                .setState("NSW")
-                .setSuburb("Ultimo")
-                .createAddress();
+        address = new Address("46 Ada Place Ultimo NSW 2007");
 
        description = "Open space fourth story apartment with carpet";
        ppw = 880.0;
