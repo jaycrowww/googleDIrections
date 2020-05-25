@@ -9,11 +9,12 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class TextFileReader implements FileReader {
-    private static final java.lang.String DELIMITER = "\\|";
-    private  static final java.lang.String IDENTIFIER_CANDIDATE_HOUSE = "CH";
-    private static final java.lang.String IDENTIFIER_PLACE_OF_INTEREST = "POI";
+    // delimiter treated as regex, need to use escape characters
+    private static final String DELIMITER = "\\|";
+    private  static final String IDENTIFIER_CANDIDATE_HOUSE = "CH";
+    private static final String IDENTIFIER_PLACE_OF_INTEREST = "POI";
 
-    private java.lang.String fileName = "inputFile.txt";
+    private String fileName = "inputFile.txt";
 
     public ReadFile readInFile() throws IOException {
         return this.readInFile(fileName);
