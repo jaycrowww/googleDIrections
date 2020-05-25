@@ -9,13 +9,6 @@ import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 
 public class MockDistanceQueryTest {
-    private double ppw = 880;
-    private String description = "";
-    private Address address1;
-    private CandidateHouse house;
-
-    private PlaceOfImportance poi;
-    private Address address2;
 
     private ArrayList<PlaceOfImportance> pois;
     private ArrayList<CandidateHouse> candidateHouses;
@@ -25,18 +18,20 @@ public class MockDistanceQueryTest {
     @Before
     public void setup(){
         // create CH
-        address1 = new Address("46 Ada Place Ultimo NSW 2007");
+        String address1 = new String("46 Ada Place Ultimo NSW 2007");
 
-        house = new CandidateHouse(address1, CandidateHouse.HouseType.APARTMENT, ppw, description);
+        String description = "";
+        double ppw = 880;
+        CandidateHouse house = new CandidateHouse(address1, CandidateHouse.HouseType.APARTMENT, ppw, description);
 
         // create CH list
         candidateHouses = new ArrayList<CandidateHouse>();
         candidateHouses.add(house);
 
         // create POI
-        address2 = new Address("367 George Street Sydney NSW 2000");
+        String address2 = new String("367 George Street Sydney NSW 2000");
 
-        poi = new PlaceOfImportance(address2, "work");
+        PlaceOfImportance poi = new PlaceOfImportance(address2, "work");
 
         // create POI list
         pois = new ArrayList<PlaceOfImportance>();

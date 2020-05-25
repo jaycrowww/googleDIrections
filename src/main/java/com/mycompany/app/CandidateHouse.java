@@ -6,7 +6,7 @@ public class CandidateHouse extends Place {
 
     // potential for number of bed and bathroom
 
-    public CandidateHouse(Address address, HouseType houseType, double ppw, String description) {
+    public CandidateHouse(String address, HouseType houseType, double ppw, String description) {
         super(address, description);
         this.houseType = houseType;
         if(ppw > 0) {
@@ -14,8 +14,9 @@ public class CandidateHouse extends Place {
         }
     }
 
+
     // If no description added initially
-    public CandidateHouse(Address address, HouseType houseType, double ppw) {
+    public CandidateHouse(String address, HouseType houseType, double ppw) {
         this(address, houseType, ppw, "");
     }
 

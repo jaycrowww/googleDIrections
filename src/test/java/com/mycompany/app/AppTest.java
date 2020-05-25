@@ -18,7 +18,7 @@ public class AppTest
      *
      * @param testName name of the test case
      */
-    public AppTest( String testName )
+    public AppTest(String testName )
     {
         super( testName );
     }
@@ -31,12 +31,6 @@ public class AppTest
         return new TestSuite( AppTest.class );
     }
 
-    /**
-     * Rigourous Test :-)
-     */
-
-    private CandidateHouse option1;
-    private PlaceOfImportance place1;
     @Before
     public void setUp(){
 
@@ -45,25 +39,28 @@ public class AppTest
 
         // Uses Address building pattern so that variables will always be structured
         // create component / dependency first and then pass to HouseOption
-        Address address1 = new Address("46 Ada Place Ultimo NSW 2007");
+        String address1 = "46 Ada Place Ultimo NSW 2007";
 
-        option1 = new CandidateHouse(address1, CandidateHouse.HouseType.APARTMENT, ppw, description);
+        /**
+         * Rigourous Test :-)
+         */
+        CandidateHouse option1 = new CandidateHouse(address1, CandidateHouse.HouseType.APARTMENT, ppw, description);
         // testing adding notes
         option1.addToDescription("stomping heard from the 5th floor 03/05/2020");
 
         // Control - same address, should return zero for distance
-        Address poiAddress1 = new Address("46 Ada Place Ultimo NSW 2007");
+        String poiAddress1 = "46 Ada Place Ultimo NSW 2007";
 
         // WORK, no AddressL2 assigned
-        Address poiAddress2 = new Address("367 George Street Sydney NSW 2000");
+        String poiAddress2 = "367 George Street Sydney NSW 2000";
 
         // Boxing Gym
         // No country set
-        Address poiAddress3 = new Address("3 Allen St, Waterloo NSW 2017");
+        String poiAddress3 = "3 Allen St, Waterloo NSW 2017";
 
 
         // Create places of importance
-        place1 = new PlaceOfImportance(poiAddress1, "Home");
+        PlaceOfImportance place1 = new PlaceOfImportance(poiAddress1, "Home");
         PlaceOfImportance place2 = new PlaceOfImportance(poiAddress2, "Work");
         PlaceOfImportance place3= new PlaceOfImportance(poiAddress3, "Boxing gym");
 

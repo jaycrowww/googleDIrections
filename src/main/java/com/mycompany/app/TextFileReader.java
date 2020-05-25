@@ -9,11 +9,11 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class TextFileReader implements FileReader {
-    private static final String DELIMITER = "|";
-    private  static final String IDENTIFIER_CANDIDATE_HOUSE = "CH";
-    private static final String IDENTIFIER_PLACE_OF_INTEREST = "POI";
+    private static final java.lang.String DELIMITER = "\\|";
+    private  static final java.lang.String IDENTIFIER_CANDIDATE_HOUSE = "CH";
+    private static final java.lang.String IDENTIFIER_PLACE_OF_INTEREST = "POI";
 
-    private String fileName = "inputFile.txt";
+    private java.lang.String fileName = "inputFile.txt";
 
     public ReadFile readInFile() throws IOException {
         return this.readInFile(fileName);
@@ -41,7 +41,7 @@ public class TextFileReader implements FileReader {
                 tokens = myReader.nextLine().split(DELIMITER);
 
                 // Do shared stuff for Places first
-                Address address = new Address(tokens[1]);
+                String address = tokens[1];
                 String description = tokens[2];
 
                 // check first value - which says whether it is a Candidate House (CH) or Place of Interest (POI)
@@ -54,7 +54,7 @@ public class TextFileReader implements FileReader {
                     }catch(IllegalArgumentException e){
                         houseType = CandidateHouse.HouseType.UNDEFINED;
                     }
-                    Double ppw = Double.parseDouble(tokens[3]);
+                    double ppw = Double.parseDouble(tokens[4]);
 
                     CandidateHouse candidateHouse = new CandidateHouse(address, houseType, ppw, description);
                     candidateHouses.add(candidateHouse);
@@ -73,8 +73,7 @@ public class TextFileReader implements FileReader {
             e.printStackTrace();
         }
 
-        ReadFile readfile = new ReadFile(candidateHouses, placeOfImportances);
-        return readfile;
+        return new ReadFile(candidateHouses, placeOfImportances);
     }
 
     @Override

@@ -5,23 +5,23 @@ import java.util.List;
 
 abstract class Place {
     // these should be protected - any class in a package can access these - typically for subclasses.
-    protected Address address;
+    protected String address;
     protected ArrayList<String> descriptions = new ArrayList<>();
 
-    public Place(Address address, String description) {
+    public Place(String address, String description) {
         this.address = address;
         this.descriptions.add(description);
     }
 
     // No Description Constructor
-    public Place(Address address) {
+    public Place(String address) {
         this(address, "");
     }
-    public Address getAddress() {
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 
@@ -39,7 +39,7 @@ abstract class Place {
 
     @Override
     public String toString() {
-        return address.toString() + " " + this.appendAllDescriptions();
+        return address + " " + this.appendAllDescriptions();
     }
 
     public List<String> getDescriptions() {
